@@ -1,0 +1,133 @@
+.mainnav {
+  box-sizing: border-box;
+  position: relative;
+  height: 50px;
+  width: 100%;
+  border-bottom: 1px solid rgb(230,230,230);
+  padding: 0px 20px;
+  overflow: hidden;
+}
+
+.hamburger, .logo, button, .profile {
+  cursor: pointer;
+}
+
+.hamburger, .logo, .you, .tube, form {
+  display: inline-block;
+}
+
+.hamburger {
+  vertical-align: top;
+  padding: 16px 11px 15px 13px;
+  color: rgb(160,160,160);
+}
+.hamburger:hover {
+  color: rgb(80,80,80);
+}
+
+.logo {
+  cursor: pointer;
+}
+
+.you {
+  color: rgb(50,50,50);
+  font: 700 19px "Oswald";
+  font-weight: 700;
+  padding: 10px 2px;
+  transform: scaleY(1.14);
+}
+
+.tube {
+  font: 500 18px "Oswald";
+  color: white;
+  padding: 0px 4.3px 0px 4px;
+  border-radius: 21%;
+  background: rgb(227, 35, 35);
+  transform: scaleY(1.14);
+}
+
+form {
+  box-sizing: border-box;
+  font-size: 0;
+  position: absolute;
+  top: 10px;
+  left: 230px;
+  width: 650px;
+  border: 1px solid lightgrey;
+  border-radius: 1px;
+}
+
+form input, form button {
+  box-sizing: border-box;
+  display: inline-block;
+  float: left;
+  margin: 0;
+  padding: 5px 6px;
+}
+
+form input {
+  font: 16px Roboto;
+  height: 27px;
+  border: none;
+  width: 582px;
+  box-shadow: inset 0px 0px .7px 0px rgba(40,40,40,.5);
+}
+
+form input::-webkit-input-placeholder {
+   color: rgb(125,125,125);
+}
+
+form button {
+  background: rgba(243,243,243,.6);
+  border-top: none;
+  border-bottom: none;
+  border-right: none;
+  border-left: 1px solid lightgrey;
+  width: 66px;
+  height: 27px;
+  text-align: center;
+  color: rgb(160,160,160);
+}
+
+form button:hover {
+  background: rgb(240,240,240);
+  color: rgb(120,120,120);
+}
+
+.profile {
+  float: right;
+  height: 26px;
+  background: lightblue;
+  border-radius: 100%;
+  margin: 11px 30px;
+}
+
+.subnav {
+  text-align: center;
+  height: 40px;
+  border-bottom: 1px solid rgb(230,230,230);
+}
+
+.subnav a {
+  font-weight: 100;
+  color: rgb(120,120,120);
+  font: 13px Roboto;
+  display: inline-block;
+  padding: 12px 0px 10px 0px;
+  margin-right: 30px;
+}
+
+.subnav a:first-child {
+  margin-left: 11px;
+}
+
+.subnav a:hover {
+  border-bottom: 3px solid rgb(204, 24, 30);
+}
+
+.subnav a:last-child {
+  box-sizing: border-box;
+  border-bottom: 3px solid rgb(204, 24, 30);
+  font: 13px "Roboto Bold";
+  color: rgb(80,80,80);
+}
