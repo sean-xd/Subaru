@@ -41,7 +41,10 @@ function t(tag, config){
 // Logic
 function hp(url, cb){
   var req = new XMLHttpRequest();
-  req.addEventListener("load", function(){cb(this.responseText);});
+  req.addEventListener("load", function(){
+    if(!this.responseText) return;
+    cb(JSON.parse(this.responseText));
+  });
   req.open("GET", url);
   req.send();
 }
