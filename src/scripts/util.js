@@ -38,6 +38,12 @@ function t(tag, config){
   };
 }
 
+function pa(e){return e.parentNode;}
+function clc(e, cn){return e.classList.contains(cn);}
+function cla(e, cn){return e.classList.add(cn);}
+function clr(e, cn){return e.classList.remove(cn);}
+function clt(e, cn){return e.classList.toggle(cn);}
+
 // Logic
 function hp(url, cb){
   var req = new XMLHttpRequest();
@@ -49,11 +55,18 @@ function hp(url, cb){
   req.send();
 }
 
+function c1(cb, a){
+  return function(b){cb(a, b);};
+}
+function c2(cb, b){
+  return function(a){cb(a, b);};
+}
+
 function Magic(num, fn, check){
   var args = [];
   return data => {
     args.push(data);
-    if(args.length === num) check ? fn(args) : fn.apply(null, args);
+    if(args.length === num) check ? fn.apply(null, args) : fn(args);
   }
 }
 
@@ -94,4 +107,19 @@ function Kyp(){
     };
   window.addEventListener("keydown", kyp);
   return kyp;
+}
+
+// Date
+function dat(date){
+  var h = date.getHours(), mi = date.getMinutes();
+  return {
+    y: date.getFullYear(), mo: date.getMonth() + 1,
+    d: date.getDate(), w: date.getDay(),
+    h: h, h12: (h > 12) ? h - 12 : h, ampm: (h > 11) ? "pm" : "am",
+    mi: (mi < 10) ? `0${mi}` : mi.toString(),
+    hmi: (h * 100) + mi,
+    sea: ["winter", "spring", "summer", "fall"][Math.floor(date.getMonth() / 3)],
+    sn: Math.floor(date.getMonth() / 3),
+    t: date.getTime()
+  }
 }

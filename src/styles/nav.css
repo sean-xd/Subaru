@@ -8,7 +8,7 @@
   overflow: hidden;
 }
 
-.hamburger, .logo, button, .profile {
+.hamburger, .logo, button, .profile, .notifications, .upload, .settingsIcon, .videoIcon {
   cursor: pointer;
 }
 
@@ -17,16 +17,13 @@
 }
 
 .hamburger {
+  transition: .2s all;
   vertical-align: top;
   padding: 16px 11px 15px 13px;
   color: rgb(160,160,160);
 }
 .hamburger:hover {
   color: rgb(80,80,80);
-}
-
-.logo {
-  cursor: pointer;
 }
 
 .you {
@@ -70,7 +67,7 @@ form input {
   height: 27px;
   border: none;
   width: 582px;
-  box-shadow: inset 0px 0px .7px 0px rgba(40,40,40,.5);
+  box-shadow: inset 0px 0px .5px 0px rgba(40,40,40,.5);
 }
 
 form input::-webkit-input-placeholder {
@@ -94,18 +91,45 @@ form button:hover {
   color: rgb(120,120,120);
 }
 
-.profile {
+.upload {
   float: right;
+  margin: 10px;
+  padding: 7px;
+  border-radius: 2px;
+  color: rgb(80,80,80);
+  background: rgb(248,248,248);
+  border: 1px solid rgb(210,210,210);
+  font: 11px "Roboto Bold";
+}
+.upload:hover {
+  background: rgb(240,240,240);
+}
+
+.notifications, .profile, .settingsIcon, .videoIcon {
+  float: right;
+  font-size: 26px !important;
+}
+.notifications {
+  padding: 5px;
+  color: rgb(100,100,100);
+  margin: 5px 10px 5px 5px;
+}
+.notifications:hover {color: rgb(60,60,60);}
+
+.profile {
   height: 26px;
-  background: lightblue;
+  width: 26px;
   border-radius: 100%;
-  margin: 11px 30px;
+  background: rgb(67, 115, 222);
+  color: rgb(156, 190, 247);
+  margin: 10px;
 }
 
 .subnav {
+  box-sizing: border-box;
   text-align: center;
   height: 40px;
-  border-bottom: 1px solid rgb(230,230,230);
+  padding-left: 40px;
 }
 
 .subnav a {
@@ -114,7 +138,7 @@ form button:hover {
   font: 13px Roboto;
   display: inline-block;
   padding: 12px 0px 10px 0px;
-  margin-right: 30px;
+  margin-left: 30px;
 }
 
 .subnav a:first-child {
@@ -125,9 +149,27 @@ form button:hover {
   border-bottom: 3px solid rgb(204, 24, 30);
 }
 
-.subnav a:last-child {
+.subnav a:nth-child(3) {
   box-sizing: border-box;
   border-bottom: 3px solid rgb(204, 24, 30);
   font: 13px "Roboto Bold";
   color: rgb(80,80,80);
+}
+
+.settingsIcon {
+  padding: 5px;
+  margin: 0px 25px 0px 5px;
+}
+
+.videoIcon {
+  padding: 5px;
+  margin: 0px 10px 0px 5px;
+}
+
+.settingsIcon, .videoIcon {
+  color: rgb(100,100,100);
+}
+
+.settingsIcon:hover, .videoIcon:hover {
+  color: rgb(60,60,60);
 }

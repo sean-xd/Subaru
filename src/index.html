@@ -4,41 +4,44 @@
   <meta charset="UTF-8">
   <title>Subscriptions - Youtube</title>
   <link rel="stylesheet" href="main.css">
+  <script src="https://www.youtube.com/iframe_api" defer></script>
   <script src="app.js" defer></script>
 </head>
 <body>
   <nav class="mainnav">
-
-    <div class="hamburger">
-      <i class="material-icons">menu</i>
-    </div>
-
+    <i class="material-icons hamburger">menu</i>
     <div class="logo">
       <div class="you">You</div>
       <div class="tube">Tube</div>
     </div>
-
-    <form action="https://www.youtube.com/results?" method="get">
+    <form action="javascript:youtubeSearch()">
       <input type="text" placeholder="Search">
       <button type="submit">
         <i class="material-icons">search</i>
       </button>
     </form>
-
-    <img class="profile" src="https://yt3.ggpht.com/-PkWSDyhv8s0/AAAAAAAAAAI/AAAAAAAAAAA/AiJX29d7gls/s88-c-k-no-rj-c0xffffff/photo.jpg" alt="">
+    <i class="profile material-icons">account_circle</i>
+    <i class="notifications material-icons">notifications_none</i>
+    <button class="upload">Upload</button>
   </nav>
-
   <nav class="subnav">
     <a href="https://www.youtube.com/">Home</a>
     <a href="https://www.youtube.com/feed/trending">Trending</a>
     <a href="">Subscriptions</a>
+    <i class="material-icons settingsIcon">settings</i>
+    <i class="material-icons videoIcon">ondemand_video</i>
   </nav>
-
-  <main>
-    <div class="actions">
-      <div class="add nogroups">Add Group</div>
+  <div class="drawer">
+    <div class="videoPanel">
+      <div id="player"></div>
     </div>
+    <div class="settingsPanel"></div>
+  </div>
+  <div class="bg"></div>
+  <main>
+    <div class="spacer"></div>
     <footer></footer>
   </main>
+  <i class="top material-icons">arrow_upward</i>
 </body>
 </html>
