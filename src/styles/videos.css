@@ -1,0 +1,65 @@
+section {
+  visibility: visible;
+  transition: opacity .2s, height .2s;
+  opacity: 1;
+  box-sizing: border-box;
+  height: 230px;
+  overflow: hidden;
+  box-shadow: 0px 1px 2px 1px rgba(40,40,40,.2);
+  padding: 10px;
+  margin: 10px auto 0px auto;
+  background: white;
+}
+section.hide {opacity: 0; height: 0px;}
+section.expand {height: auto; margin: 20px auto 40px auto !important;}
+
+.group {
+  box-sizing: border-box;
+  padding: 5px;
+  margin: 0;
+  font: 15px "Roboto Bold";
+  height: 30px;
+  cursor: pointer;
+}
+
+.video {
+  transition: .2s all;
+  vertical-align: top;
+  display: inline-block;
+  height: 170px;
+  width: 196px;
+  padding: 10px 5px 5px 5px;
+}
+.video.active {
+  background: rgb(40,40,40);
+  box-shadow: 0px 0px 1px 1px rgba(10,0,0,.8);
+}
+
+.video-img, .video-title, .video-links {
+  cursor: pointer;
+  display: inline-block;
+}
+
+.video-img {
+  box-shadow: 0px 0px 1px 1px rgba(0,0,0,.5);
+  height: 110px;
+  width: 100%;
+}
+
+.video-title {
+  padding: 4px 0px 0px 0px;
+  font: 13px "Roboto Bold";
+  color: #167ac6;
+  width: 100%;
+  max-height: 30px;
+  overflow: hidden;
+}
+.active .video-title {color: lightblue;}
+
+.video-links {
+  margin: 3px 0 0 0;
+  color: rgb(80,80,80);
+  font: 11px "Roboto";
+  height: 20px;
+}
+.active .video-links {color: rgb(240,240,240);}

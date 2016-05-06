@@ -1,20 +1,15 @@
 .mainnav {
+  position: fixed;
+  z-index: 1;
+  top: 0; left: 0;
+  height: 50px; width: 100%;
+  box-shadow: 0px 0px .3px .3px rgb(220,220,220);
   box-sizing: border-box;
-  position: relative;
-  height: 50px;
-  width: 100%;
-  border-bottom: 1px solid rgb(230,230,230);
   padding: 0px 20px;
-  overflow: hidden;
 }
 
-.hamburger, .logo, button, .profile, .notifications, .upload, .settingsIcon, .videoIcon {
-  cursor: pointer;
-}
-
-.hamburger, .logo, .you, .tube, form {
-  display: inline-block;
-}
+.hamburger, .logo, button, .profile, .notifications, .upload, .settingsIcon, .videoIcon {cursor: pointer;}
+.hamburger, .logo, .you, .tube, form, form input, form button {display: inline-block;}
 
 .hamburger {
   transition: .2s all;
@@ -22,33 +17,31 @@
   padding: 16px 11px 15px 13px;
   color: rgb(160,160,160);
 }
-.hamburger:hover {
-  color: rgb(80,80,80);
-}
+.hamburger:hover {color: rgb(80,80,80);}
 
 .you {
   color: rgb(50,50,50);
   font: 700 19px "Oswald";
-  font-weight: 700;
   padding: 10px 2px;
   transform: scaleY(1.14);
+  width: 27px;
 }
 
 .tube {
+  width: 32px;
   font: 500 18px "Oswald";
   color: white;
-  padding: 0px 4.3px 0px 4px;
-  border-radius: 21%;
+  padding: 0px 4.5px 0px 4px;
+  border-radius: 20%;
   background: rgb(227, 35, 35);
-  transform: scaleY(1.14);
+  transform: scaleY(1.135);
 }
 
 form {
   box-sizing: border-box;
   font-size: 0;
   position: absolute;
-  top: 10px;
-  left: 230px;
+  top: 10px; left: 230px;
   width: 650px;
   border: 1px solid lightgrey;
   border-radius: 1px;
@@ -56,23 +49,19 @@ form {
 
 form input, form button {
   box-sizing: border-box;
-  display: inline-block;
   float: left;
   margin: 0;
   padding: 5px 6px;
 }
 
 form input {
-  font: 16px Roboto;
-  height: 27px;
+  font: 16px "Roboto";
+  height: 27px; width: 582px;
   border: none;
-  width: 582px;
   box-shadow: inset 0px 0px .5px 0px rgba(40,40,40,.5);
 }
 
-form input::-webkit-input-placeholder {
-   color: rgb(125,125,125);
-}
+form input::-webkit-input-placeholder {color: rgb(125,125,125);}
 
 form button {
   background: rgba(243,243,243,.6);
@@ -80,16 +69,11 @@ form button {
   border-bottom: none;
   border-right: none;
   border-left: 1px solid lightgrey;
-  width: 66px;
-  height: 27px;
+  width: 66px; height: 27px;
   text-align: center;
   color: rgb(160,160,160);
 }
-
-form button:hover {
-  background: rgb(240,240,240);
-  color: rgb(120,120,120);
-}
+form button:hover {background: rgb(240,240,240); color: rgb(120,120,120);}
 
 .upload {
   float: right;
@@ -101,14 +85,9 @@ form button:hover {
   border: 1px solid rgb(210,210,210);
   font: 11px "Roboto Bold";
 }
-.upload:hover {
-  background: rgb(240,240,240);
-}
+.upload:hover {background: rgb(240,240,240);}
 
-.notifications, .profile, .settingsIcon, .videoIcon {
-  float: right;
-  font-size: 26px !important;
-}
+.notifications, .profile, .videoIcon {float: right; font-size: 26px !important;}
 .notifications {
   padding: 5px;
   color: rgb(100,100,100);
@@ -117,8 +96,7 @@ form button:hover {
 .notifications:hover {color: rgb(60,60,60);}
 
 .profile {
-  height: 26px;
-  width: 26px;
+  height: 26px; width: 26px;
   border-radius: 100%;
   background: rgb(67, 115, 222);
   color: rgb(156, 190, 247);
@@ -126,12 +104,15 @@ form button:hover {
 }
 
 .subnav {
+  position: fixed;
+  z-index: 1;
+  top: 50px; left: 0px;
   box-sizing: border-box;
   text-align: center;
-  height: 40px;
+  height: 40px; width: 100%;
   padding-left: 40px;
+  box-shadow: 0px 1px 1px 1px rgba(80,80,80,.4);
 }
-
 .subnav a {
   font-weight: 100;
   color: rgb(120,120,120);
@@ -140,15 +121,8 @@ form button:hover {
   padding: 12px 0px 10px 0px;
   margin-left: 30px;
 }
-
-.subnav a:first-child {
-  margin-left: 11px;
-}
-
-.subnav a:hover {
-  border-bottom: 3px solid rgb(204, 24, 30);
-}
-
+.subnav a:first-child {margin-left: 11px;}
+.subnav a:hover {border-bottom: 3px solid rgb(204, 24, 30);}
 .subnav a:nth-child(3) {
   box-sizing: border-box;
   border-bottom: 3px solid rgb(204, 24, 30);
@@ -156,20 +130,9 @@ form button:hover {
   color: rgb(80,80,80);
 }
 
-.settingsIcon {
-  padding: 5px;
-  margin: 0px 25px 0px 5px;
-}
-
 .videoIcon {
   padding: 5px;
-  margin: 0px 10px 0px 5px;
-}
-
-.settingsIcon, .videoIcon {
+  margin: 0px 25px 0px 5px;
   color: rgb(100,100,100);
 }
-
-.settingsIcon:hover, .videoIcon:hover {
-  color: rgb(60,60,60);
-}
+.videoIcon:hover {color: rgb(60,60,60);}

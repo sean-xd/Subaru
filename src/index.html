@@ -8,40 +8,44 @@
   <script src="app.js" defer></script>
 </head>
 <body>
+
   <nav class="mainnav">
     <i class="material-icons hamburger">menu</i>
-    <div class="logo">
-      <div class="you">You</div>
-      <div class="tube">Tube</div>
-    </div>
+    <div class="logo"><div class="you">You</div><div class="tube">Tube</div></div>
     <form action="javascript:youtubeSearch()">
       <input type="text" placeholder="Search">
-      <button type="submit">
-        <i class="material-icons">search</i>
-      </button>
+      <button type="submit"><i class="material-icons">search</i></button>
     </form>
     <i class="profile material-icons">account_circle</i>
     <i class="notifications material-icons">notifications_none</i>
     <button class="upload">Upload</button>
   </nav>
+
   <nav class="subnav">
-    <a href="https://www.youtube.com/">Home</a>
-    <a href="https://www.youtube.com/feed/trending">Trending</a>
+    <a href="">Home</a>
+    <a href="">Trending</a>
     <a href="">Subscriptions</a>
-    <i class="material-icons settingsIcon">settings</i>
     <i class="material-icons videoIcon">ondemand_video</i>
   </nav>
-  <div class="drawer">
-    <div class="videoPanel">
-      <div id="player"></div>
-    </div>
-    <div class="settingsPanel"></div>
-  </div>
+
   <div class="bg"></div>
-  <main>
-    <div class="spacer"></div>
-    <footer></footer>
-  </main>
+
+  <div class="content">
+
+    <div class="drawer">
+      <i class="prev material-icons">navigate_before</i>
+      <div id="player"></div>
+      <i class="next material-icons">navigate_next</i>
+    </div>
+
+    <main>
+      <div class="spacer"></div>
+      <footer></footer>
+    </main>
+
+  </div>
+
   <i class="top material-icons">arrow_upward</i>
+
 </body>
 </html>
