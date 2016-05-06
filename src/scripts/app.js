@@ -2,27 +2,15 @@
 var ls = localStorage,
   player,
   base = {videoId: "zN4m-KcflGg"},
-  dom = {main: el("main")[0]},
+  dom = {main: el("main")[0], sections: {}, create: el(".create")[0]},
   channels = ls.channels ? JSON.parse(ls.channels) : {},
   groups = ls.groups ? JSON.parse(ls.groups) : {},
-  active = {
-    video: false,
-    group: false,
-    theatre: false
-  },
-  sections = {},
+  active = {video: false, group: false, theatre: false},
   list = {};
 
-// Setup
-if(!ls.groups){
-  groups["Music"] = ["EpicNetworkMusic", "UDUBSTEPHD"];
-  groups["Gaming"] = ["killertoast949", "TSirDiesAlot", "PewDiePie"]
-  groups["News"] = ["DNewsChannel", "SourceFed", "vice", "sxephil"];
-  groups["Happy"] = ["mikefalzone", "thedefrancofam", "MyHarto"];
-  ls.groups = JSON.stringify(groups);
+if(Object.keys(groups).length){
+  Object.keys(groups).sort().forEach(key => load(key));
 }
-
-Object.keys(groups).forEach(key => load(key));
 
 // Functions
 function load(name, update){ // Gets and passes group video data to draw.
@@ -57,45 +45,19 @@ function format(data){ // Take just the data we need.
 }
 
 function draw(name, update){
-  console.log(update);
   if(!groups[name]) return;
-  if(!sections[name]) sections[name] = t("section", {id: name})([
-    t("h3", {classes: ["group"]})(name),
-    t("i", {classes: ["settings", "material-icons"]})("settings"),
-    t(".panel")([
-      t(".left")([
-        t("h2")("Group Editor"),
-        t("input", {placeholder: "Enter Channel Name"})(),
-        t(".add")("Add Channel")
-      ]),
-      t(".right")(groups[name].map(cname => t(".channel")([
-        t(".cname")(cname),
-        t("i", {classes: ["delete", "material-icons"]})("delete_forever")
-      ])))
-    ])
-  ]);
-
+  if(!dom.sections[name]) dom.sections[name] = sectionDom(name);
   if(update){
-    while(sections[name].children.length > 3){
-      sections[name].removeChild(sections[name].children[sections[name].children.length - 1]);
+    while(dom.sections[name].children.length > 3){
+      dom.sections[name].removeChild(dom.sections[name].children[dom.sections[name].children.length - 1]);
     }
   }
-
-  list[name] = groups[name]
-    .reduce((arr, cn) => arr.concat(channels[cn]), [])
-    .sort(sorter(e => Date.now() - e.date));
-
-  list[name].forEach(e => sections[name].appendChild(videoDom(e)));
-  list[name] = list[name].map(e => e.id);
-  if(!update) dom.main.appendChild(sections[name]);
-}
-
-function videoDom(data){
-  return t(".video", {id: data.id})([
-    t("img", {classes: ["video-img"], src: data.src})(),
-    t(".video-title")(data.title),
-    t("a", {classes: ["video-links"], href: "http://www.youtube.com/channel/" + data.cid})(data.cname)
-  ]);
+  var playlist = groups[name].reduce((arr, cn) => arr.concat(channels[cn]), []);
+  playlist.sort(sorter(e => Date.now() - e.date));
+  playlist.forEach(e => dom.sections[name].appendChild(videoDom(e)))
+  list[name] = playlist.map(e => e.id);
+  if(list[name].length > 100) list[name] = list[name].slice(0,99);
+  if(!update) dom.main.appendChild(dom.sections[name]);
 }
 
 function channel(name, cb){
@@ -118,6 +80,7 @@ function toggleDrawer(name){
     active.group = false;
     active.video = false;
   }
+  else el(".content")[0].scrollTop = 0;
   active.group ? player.cuePlaylist(list[active.group]) : player.cueVideoById(base.videoId);
   Object.keys(groups).forEach(key => {
     if(!active.group) return clr(el("#" + key), "hide");
@@ -125,17 +88,40 @@ function toggleDrawer(name){
   });
 }
 
+
+var isCreateOpen = false;
+dom.create.addEventListener("click", e => {
+  clt(el(".createInput")[0], "long");
+  if(isCreateOpen){
+    var val = el(".createInput")[0].value;
+    groups[val] = [];
+    dom.sections[val] = sectionDom(val);
+    var order = Object.keys(groups).sort(),
+      index = order.indexOf(val) + 1;
+    if(index === order.length) dom.main.appendChild(dom.sections[val]);
+    else dom.main.insertBefore(dom.sections[val], el("#" + order[index]));
+  }
+  dom.create.textContent = isCreateOpen ? "playlist_add" : "playlist_add_check";
+  isCreateOpen = !isCreateOpen;
+});
+
 dom.main.addEventListener("click", e => {
+  if(clc(e.target, "remove")){
+    var id = pa(pa(e.target)).id;
+    dom.main.removeChild(dom.sections[id]);
+    groups = Object.keys(groups).reduce((obj, key) => {
+      if(key !== id) obj[key] = groups[key];
+      return obj;
+    }, {});
+    ls.groups = JSON.stringify(groups);
+  }
   if(clc(e.target, "add")){
     var channelName = el("input", pa(e.target))[0].value,
       groupName = pa(pa(pa(e.target))).id;
     el("input", pa(e.target))[0].value = "";
     groups[groupName].push(channelName);
     ls.groups = JSON.stringify(groups);
-    el(".right", pa(pa(e.target)))[0].appendChild(t(".channel")([
-      t(".cname")(channelName),
-      t("i", {classes: ["delete", "material-icons"]})("delete_forever")
-    ]));
+    el(".right", pa(pa(e.target)))[0].appendChild(channelDom(channelName));
     load(groupName, 1);
   }
   if(clc(e.target, "delete")){
