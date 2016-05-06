@@ -129,3 +129,29 @@ form button:hover {background: rgb(240,240,240); color: rgb(120,120,120);}
   font: 13px "Roboto Bold";
   color: rgb(80,80,80);
 }
+
+.create {
+  float: right;
+  padding: 6px;
+  margin-right: 20px;
+  font-size: 26px !important;
+  cursor: pointer;
+  color: rgb(80,80,80);
+}
+.create:hover {color: rgb(40,40,40);}
+
+.createInput {
+  right: 60px;
+  top: 0;
+  position: absolute;
+  transition: .2s all;
+  width: 0px;
+  padding: 2px 0px 2px 5px;
+  font: 14px "Roboto";
+  margin: 9px 8px 8px 8px;
+  border: none;
+}
+.createInput.long {
+  width: 150px;
+  border: 1px solid rgb(200,200,200);
+}

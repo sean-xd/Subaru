@@ -40,7 +40,7 @@ a {text-decoration: none;}
 #player {width: 100%; height: 100%; max-width: 1260px;}
 
 main, .bg {transition: .2s all; position: absolute; left: 0; width: 100vw;}
-main {top: 0px; visibility: hidden; box-sizing: border-box;}
+main {top: 0px; visibility: hidden; box-sizing: border-box; margin-bottom: 50px;}
 main.space {padding-top: calc(100vh - 350px);}
 
 .bg {bottom: 0px; background: rgb(240,240,240); height: calc(100% - 90px);}

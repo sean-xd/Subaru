@@ -6,7 +6,7 @@ section {
   box-sizing: border-box;
   height: 230px;
   overflow: hidden;
-  box-shadow: 0px 1px 2px .5px rgba(40,40,40,.2);
+  box-shadow: 0px 0px 1px .5px rgba(40,40,40,.2);
   padding: 10px;
   margin: 10px auto -5px auto;
   background: white;
@@ -47,6 +47,17 @@ section.expand {height: auto; margin: 0px auto 40px auto !important;}
   background: rgb(220,220,220);
 }
 .panel.show {visibility: visible; height: 100%;}
+
+.remove {
+  position: absolute;
+  cursor: pointer;
+  z-index: 1;
+  top: 5px; left: 5px;
+  padding: 10px;
+  font: 14px "Roboto Bold";
+  color: rgb(80,20,40);
+}
+.remove:hover{color: rgb(120,40,60);}
 
 .left, .right {
   box-sizing: border-box;
