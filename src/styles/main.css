@@ -1,3 +1,6 @@
+html, body {border: 0; height: 100%; margin: 0; padding: 0; width: 100%; font-size: 0;}
+a {text-decoration: none;}
+
 .content {
   top: 90px;
   position: relative;
@@ -28,27 +31,20 @@
   height: 60px; width: 60px;
   color: rgba(200,200,200,.5);
 }
+.prev:hover, .next:hover {
+  color: rgba(240,240,240,.7);
+}
 .prev {left: 20px;}
 .next {right: 20px;}
 
 #player {width: 100%; height: 100%; max-width: 1260px;}
 
-main, .bg {position: absolute; left: 0; width: 100vw;}
-main {top: 0px; visibility: hidden;}
+main, .bg {transition: .2s all; position: absolute; left: 0; width: 100vw;}
+main {top: 0px; visibility: hidden; box-sizing: border-box;}
+main.space {padding-top: calc(100vh - 350px);}
 
-.bg {transition: .2s all; bottom: 0px; background: rgb(240,240,240); height: calc(100% - 90px);}
+.bg {bottom: 0px; background: rgb(240,240,240); height: calc(100% - 90px);}
 .bg.short {height: 260px; background: rgb(220,220,220);}
-
-.spacer {
-  transition: .2s all;
-  position: relative;
-  height: 0px;
-  width: 100%;
-  margin: 0 auto;
-  max-width: 1260px;
-  visibility: hidden;
-}
-.spacer.space {height: calc(100vh - 380px);}
 
 .top {
   position: absolute;
@@ -59,6 +55,7 @@ main {top: 0px; visibility: hidden;}
   cursor: pointer;
 }
 
+@media(min-width: 300px){section {width: 220px;}}
 @media(min-width: 500px){section {width: 440px;}}
 @media(min-width: 700px){section {width: 650px;}}
 @media(min-width: 900px){section {width: 850px;}}

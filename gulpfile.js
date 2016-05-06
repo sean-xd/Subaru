@@ -1,7 +1,7 @@
 var gulp = require("gulp"),
   concat = require("gulp-concat"),
   src = {html: "src/index.html", css: "src/styles/*.css", js: ["src/scripts/*.js"]},
-  dest = {html: "public/", css: "public/", js: "public"};
+  dest = {html: "html/", css: "html/", js: "html"};
 
 function tk(name, steps){
   gulp.task(name, function(){
