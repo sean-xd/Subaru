@@ -4,6 +4,7 @@ function sectionDom(name){
     t("i", {classes: ["settings", "material-icons"]})("settings"),
     t(".panel")([
       t(".remove")("delete"),
+      t(".refresh")("refresh"),
       t(".left")([
         t("h2")("Group Editor"),
         t("input", {placeholder: "Enter Channel Name"})(),

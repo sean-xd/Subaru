@@ -6,7 +6,7 @@ var ls = localStorage,
   channels = ls.channels ? JSON.parse(ls.channels) : {},
   groups = ls.groups ? JSON.parse(ls.groups) : {},
   active = {video: false, group: false, theatre: false},
-  list = {};
+  list = [];
 
 if(Object.keys(groups).length){
   Object.keys(groups).sort().forEach(key => load(key));
@@ -70,6 +70,7 @@ function videos(id, cb){
 }
 
 function toggleDrawer(name){
+  if(!player) activatePlayer();
   if(is(name, "String")) active.group = name;
   active.theatre = !active.theatre;
   clt(el(".drawer")[0], "open");
@@ -87,7 +88,6 @@ function toggleDrawer(name){
     if(key !== active.group) cla(el("#" + key), "hide");
   });
 }
-
 
 var isCreateOpen = false;
 dom.create.addEventListener("click", e => {
@@ -114,6 +114,9 @@ dom.main.addEventListener("click", e => {
       return obj;
     }, {});
     ls.groups = JSON.stringify(groups);
+  }
+  if(clc(e.target, "refresh")){
+    load(pa(pa(e.target)).id, 1);
   }
   if(clc(e.target, "add")){
     var channelName = el("input", pa(e.target))[0].value,
@@ -161,6 +164,19 @@ el(".prev")[0].addEventListener("click", () => {
   player.previousVideo();
 });
 el(".top")[0].addEventListener("click", () => {el(".content")[0].scrollTop = 0;});
+
+function activatePlayer(){
+  player = new YT.Player("player", {
+    playerVars: {controls: 1, showinfo: 0, iv_load_policy: 3},
+    events: {
+      onStateChange: onPlayerStateChange,
+      onReady: () => {
+        player.cuePlaylist(list[active.group]);
+      }
+    },
+    videoId: el(".video")[0] ? el(".video")[0].id : list[active.group] ? list[active.group][0] : "MhYqKg3oSQ8"
+  });
+}
 
 function onYouTubeIframeAPIReady(){
   player = new YT.Player("player", {

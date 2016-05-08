@@ -48,16 +48,18 @@ section.expand {height: auto; margin: 0px auto 40px auto !important;}
 }
 .panel.show {visibility: visible; height: 100%;}
 
-.remove {
+.refresh, .remove {
   position: absolute;
   cursor: pointer;
   z-index: 1;
-  top: 5px; left: 5px;
   padding: 10px;
   font: 14px "Roboto Bold";
   color: rgb(80,20,40);
 }
-.remove:hover{color: rgb(120,40,60);}
+
+.refresh {bottom: 5px; right: 5px;}
+.remove {top: 5px; left: 5px;}
+.remove:hover, .refresh:hover {color: rgb(120,40,60);}
 
 .left, .right {
   box-sizing: border-box;
