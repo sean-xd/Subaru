@@ -64,6 +64,7 @@ function draw(name, update){
   list[name] = playlist.map(e => e.id);
   if(list[name].length > 100) list[name] = list[name].slice(0,99);
   if(!update) dom.main.appendChild(dom.sections[name]);
+  else if(active.video) cla(el("#" + active.video), "active");
 }
 
 function channel(name, cb){
@@ -96,9 +97,15 @@ function toggleDrawer(name){
 }
 
 function ban(groupName, id){
+  if(id === active.video) nextVideo();
   banlist.push(id);
   ls.banlist = JSON.stringify(banlist);
   load(groupName, 1);
+}
+
+function nextVideo(){
+  active.video = list[active.group][list[active.group].indexOf(active.video) + 1];
+  player.nextVideo();
 }
 
 // Click Events
@@ -167,10 +174,7 @@ dom.main.addEventListener("click", e => {
   }
 });
 
-el(".next")[0].addEventListener("click", () => {
-  active.video = list[active.group][list[active.group].indexOf(active.video) + 1];
-  player.nextVideo();
-});
+el(".next")[0].addEventListener("click", nextVideo);
 el(".prev")[0].addEventListener("click", () => {
   if(list[active.group].indexOf(active.video) < 1) return;
   active.video = list[active.group][list[active.group].indexOf(active.video) - 1];
