@@ -27,7 +27,7 @@ section.expand {height: auto; margin: 0px auto 40px auto !important;}
 }
 
 .settings {
-  z-index: 1;
+  z-index: 2;
   font-size: 26px;
   position: absolute;
   top: 10px;
@@ -40,6 +40,7 @@ section.expand {height: auto; margin: 0px auto 40px auto !important;}
 .panel {
   overflow: hidden;
   position: absolute;
+  z-index: 1;
   top: 0; left: 0;
   visibility: hidden;
   transition: .2s all;
