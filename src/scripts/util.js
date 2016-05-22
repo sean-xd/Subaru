@@ -53,6 +53,8 @@ function hp(url, cb){
   req.send();
 }
 
+function c(cb, a){return b => cb(a, b);}
+
 function Magic(num, fn, check){
   var args = [];
   return data => {

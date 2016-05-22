@@ -21,7 +21,7 @@ section.expand {height: auto; margin: 0px auto 40px auto !important;}
   box-sizing: border-box;
   padding: 5px;
   margin: 0;
-  font: 15px "Roboto Bold";
+  font: 700 15px "Roboto";
   height: 30px;
   cursor: pointer;
 }
@@ -53,7 +53,7 @@ section.expand {height: auto; margin: 0px auto 40px auto !important;}
   cursor: pointer;
   z-index: 1;
   padding: 10px;
-  font: 14px "Roboto Bold";
+  font: 700 14px "Roboto";
   color: rgb(80,20,40);
 }
 
@@ -75,7 +75,7 @@ section.expand {height: auto; margin: 0px auto 40px auto !important;}
 
 .panel h2 {
   color: rgb(60,60,60);
-  font: 24px "Roboto Bold";
+  font: 700 24px "Roboto";
   padding: 10px 20px;
   margin: 30px 0 10px 0;
 }
@@ -120,6 +120,7 @@ section.expand {height: auto; margin: 0px auto 40px auto !important;}
 }
 
 .video {
+  position: relative;
   transition: .2s all;
   vertical-align: top;
   display: inline-block;
@@ -130,6 +131,16 @@ section.expand {height: auto; margin: 0px auto 40px auto !important;}
 .video.active {
   background: rgb(40,40,40);
   box-shadow: 0px 0px 1px 1px rgba(10,0,0,.8);
+}
+
+.video-del {
+  color: white;
+  text-shadow: 1px 1px 1px black, -1px 1px 1px black, -1px -1px 1px black, 1px -1px 1px black;
+  font: 12px "Roboto";
+  position: absolute;
+  top: 5px; right: 5px;
+  padding: 5px;
+  cursor: pointer;
 }
 
 .video-img, .video-title, .video-links {
@@ -145,7 +156,7 @@ section.expand {height: auto; margin: 0px auto 40px auto !important;}
 
 .video-title {
   padding: 4px 0px 0px 0px;
-  font: 13px "Roboto Bold";
+  font: 700 13px "Roboto";
   color: #167ac6;
   width: 100%;
   max-height: 30px;

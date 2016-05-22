@@ -17,6 +17,7 @@ function sectionDom(name){
 
 function videoDom(data){
   return t(".video", {id: data.id})([
+    t(".video-del", {click: e => ban(pa(pa(e.target)).id, data.id)})("x"),
     t("img", {classes: ["video-img"], src: data.src})(),
     t(".video-title")(data.title),
     t("a", {classes: ["video-links"], href: "http://www.youtube.com/channel/" + data.cid})(data.cname)

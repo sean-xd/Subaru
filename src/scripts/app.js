@@ -6,7 +6,9 @@ var ls = localStorage,
   channels = ls.channels ? JSON.parse(ls.channels) : {},
   groups = ls.groups ? JSON.parse(ls.groups) : {},
   active = {video: false, group: false, theatre: false},
-  list = [];
+  list = [],
+  nextUpdate = ls.nextUpdate ? JSON.parse(ls.nextUpdate) : {},
+  banlist = ls.banlist ? JSON.parse(ls.banlist) : [];
 
 if(Object.keys(groups).length){
   Object.keys(groups).sort().forEach(key => load(key));
@@ -14,12 +16,14 @@ if(Object.keys(groups).length){
 
 // Functions
 function load(name, update){ // Gets and passes group video data to draw.
-  var magic = Magic(groups[name].length, () => {
-    ls.channels = JSON.stringify(channels); // Save channel data to localStorage.
-    draw(name, update); // Constructs dom.
-  });
+  var time = Date.now(),
+    magic = Magic(groups[name].length, () => {
+      ls.channels = JSON.stringify(channels); // Save channel data to localStorage.
+      draw(name, update); // Constructs dom.
+    });
+  if(!nextUpdate[name]) nextUpdate[name] = time - 1;
   groups[name].forEach(cname => { // Loops over each channel.
-    if(channels[cname] && !update) return magic(); // If you have the data just return.
+    if(channels[cname] && !update && time < nextUpdate[name]) return magic(); // If you have the data just return.
     channel(cname, cdata => { // Get channel id from channel name.
       videos(cdata, vdata => { // Get playlist data from channel id.
         channels[cname] = format(vdata); // Store formatted data.
@@ -27,10 +31,11 @@ function load(name, update){ // Gets and passes group video data to draw.
       });
     });
   });
+  if(nextUpdate[name] < time || update) ls.nextUpdate = time + (1000 * 60 * 5);
 }
 
 function format(data){ // Take just the data we need.
-  var result = data.items.map(item => {
+  return data.items.map(item => {
     var e = item.snippet, d = new Date(e.publishedAt);
     return {
       date: d.getTime(),
@@ -41,7 +46,6 @@ function format(data){ // Take just the data we need.
       cid: e.channelId
     };
   });
-  return result;
 }
 
 function draw(name, update){
@@ -52,7 +56,9 @@ function draw(name, update){
       dom.sections[name].removeChild(dom.sections[name].children[dom.sections[name].children.length - 1]);
     }
   }
-  var playlist = groups[name].reduce((arr, cn) => arr.concat(channels[cn]), []);
+  var playlist = groups[name].reduce((arr, cn) => {
+    return arr.concat(channels[cn]).filter(video => banlist.indexOf(video.id) === -1);
+  }, []);
   playlist.sort(sorter(e => Date.now() - e.date));
   playlist.forEach(e => dom.sections[name].appendChild(videoDom(e)))
   list[name] = playlist.map(e => e.id);
@@ -89,6 +95,13 @@ function toggleDrawer(name){
   });
 }
 
+function ban(groupName, id){
+  banlist.push(id);
+  ls.banlist = JSON.stringify(banlist);
+  load(groupName, 1);
+}
+
+// Click Events
 var isCreateOpen = false;
 dom.create.addEventListener("click", e => {
   clt(el(".createInput")[0], "long");
@@ -165,14 +178,13 @@ el(".prev")[0].addEventListener("click", () => {
 });
 el(".top")[0].addEventListener("click", () => {el(".content")[0].scrollTop = 0;});
 
+// Youtube Player Stuff
 function activatePlayer(){
   player = new YT.Player("player", {
     playerVars: {controls: 1, showinfo: 0, iv_load_policy: 3},
     events: {
       onStateChange: onPlayerStateChange,
-      onReady: () => {
-        player.cuePlaylist(list[active.group]);
-      }
+      onReady: () => {player.cuePlaylist(list[active.group]);}
     },
     videoId: el(".video")[0] ? el(".video")[0].id : list[active.group] ? list[active.group][0] : "MhYqKg3oSQ8"
   });
