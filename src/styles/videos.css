@@ -136,7 +136,7 @@ section.expand {height: auto; margin: 0px auto 40px auto !important;}
 
 .video-del {
   color: white;
-  text-shadow: 1px 1px 1px black, -1px 1px 1px black, -1px -1px 1px black, 1px -1px 1px black;
+  text-shadow: 1px 1px 1px rgba(40,40,40,.5), -1px 1px 1px rgba(40,40,40,.5), -1px -1px 1px rgba(40,40,40,.5), 1px -1px 1px rgba(40,40,40,.5);
   font: 12px "Roboto";
   position: absolute;
   top: 5px; right: 5px;
