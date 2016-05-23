@@ -135,6 +135,7 @@ section.expand {height: auto; margin: 0px auto 40px auto !important;}
 }
 
 .video-del {
+  opacity: 0;
   color: white;
   text-shadow: 1px 1px 1px rgba(40,40,40,.5), -1px 1px 1px rgba(40,40,40,.5), -1px -1px 1px rgba(40,40,40,.5), 1px -1px 1px rgba(40,40,40,.5);
   font: 12px "Roboto";
@@ -142,6 +143,9 @@ section.expand {height: auto; margin: 0px auto 40px auto !important;}
   top: 5px; right: 5px;
   padding: 5px;
   cursor: pointer;
+}
+.video:hover .video-del {
+  opacity: 1;
 }
 
 .video-img, .video-title, .video-links {
