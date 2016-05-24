@@ -1,12 +1,7 @@
-.small section {
-  width: 100% !important;
-  text-align: center;
-}
-
 section {
   position: relative;
   visibility: visible;
-  transition: opacity .2s, height .2s;
+  transition: .2s all;
   opacity: 1;
   box-sizing: border-box;
   height: 230px;

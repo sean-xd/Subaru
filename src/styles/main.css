@@ -3,13 +3,24 @@ a {text-decoration: none;}
 
 .content, aside {display: inline-block; transition: all .2s;}
 aside {
+  box-shadow: 0px 0px .3px .3px rgba(80,80,80,.4);
   position: relative;
   top: 90px; width: 0%;
   height: calc(100% - 90px);
-  background: rgb(40,40,40);
+  background: white;
   z-index: 2;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 aside.big {width: 20%;}
+
+.group-side, .channel-side {box-sizing: border-box;}
+.group-side {width: 20vw; padding: 15px 15px 0px 15px;}
+.channel-side {width: 100%;}
+.gs-title {font: 16px "Roboto"; padding: 5px; color: #cc181e; cursor: pointer;}
+.cs-title, .cs-new {display: inline-block; font: 12px "Roboto"; box-sizing: border-box; padding: 5px;}
+.cs-title {width: 80%;}
+.cs-new {width: 20%; text-align: right;}
 
 .content {
   display: inline-block;
@@ -70,8 +81,23 @@ main.small {width: 100%;}
 }
 
 @media(min-width: 300px){section {width: 220px;}}
-@media(min-width: 500px){section {width: 440px;}}
-@media(min-width: 700px){section {width: 650px;}}
-@media(min-width: 900px){section {width: 850px;}}
-@media(min-width: 1100px){section {width: 1050px;}}
-@media(min-width: 1300px){section {width: 1260px;}}
+@media(min-width: 500px){
+  section {width: 440px;}
+  .small section {width: 220px;}
+}
+@media(min-width: 700px){
+  section {width: 650px;}
+  .small section {width: 440px;}
+}
+@media(min-width: 900px){
+  section {width: 850px;}
+  .small section {width: 650px;}
+}
+@media(min-width: 1100px){
+  section {width: 1050px;}
+  .small section {width: 850px;}
+}
+@media(min-width: 1300px){
+  section {width: 1260px;}
+  .small section {width: 1050px;}
+}

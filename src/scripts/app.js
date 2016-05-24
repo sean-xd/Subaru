@@ -72,7 +72,10 @@ function draw(name, update){
   playlist.forEach(e => dom.sections[name].appendChild(videoDom(e)))
   list[name] = playlist.map(e => e.id);
   if(list[name].length > 100) list[name] = list[name].slice(0,99);
-  if(!update) dom.main.appendChild(dom.sections[name]);
+  if(!update){
+    dom.main.appendChild(dom.sections[name]);
+    dom.aside.appendChild(groupSideDom(name));
+  }
   else if(active.video) cla(el("#" + active.video), "active");
 }
 
@@ -86,12 +89,21 @@ function videos(id, cb){
 }
 
 function toggleDrawer(name){
+  var close = false;
   if(!player) activatePlayer();
-  if(is(name, "String")) active.group = name;
-  active.theatre = !active.theatre;
-  clt(dom.drawer, "open");
-  clt(dom.bg, "short");
-  clt(dom.main, "space");
+  if(is(name, "String")){
+    if(active.group === name) close = true;
+    else {
+      if(active.group) clr(el("#" + active.group), "expand");
+      active.group = name;
+    }
+  }
+  if(close || !active.theatre){
+    active.theatre = !active.theatre;
+    clt(dom.drawer, "open");
+    clt(dom.bg, "short");
+    clt(dom.main, "space");
+  }
   clt(el("#" + active.group), "expand");
   if(!active.theatre){
     active.group = false;
@@ -102,6 +114,7 @@ function toggleDrawer(name){
   Object.keys(groups).forEach(key => {
     if(!active.group) return clr(el("#" + key), "hide");
     if(key !== active.group) cla(el("#" + key), "hide");
+    if(key === active.group) clr(el("#" + key), "hide");
   });
 }
 
@@ -127,6 +140,9 @@ function openSidebar(){
 kyp("tab", e => {e.preventDefault(); openSidebar();});
 el(".hamburger")[0].addEventListener("click", openSidebar);
 
+dom.aside.addEventListener("click", e => {
+  if(clc(e.target, "gs-title")) toggleDrawer(e.target.textContent);
+});
 
 var isCreateOpen = false;
 dom.create.addEventListener("click", e => {

@@ -1,3 +1,16 @@
+function groupSideDom(name){
+  return t(".group-side")([
+    t(".gs-title")(name)
+  ].concat(groups[name].map(channelSideDom)));
+}
+
+function channelSideDom(name){
+  return t(".channel-side")([
+    t(".cs-title")(name),
+    t(".cs-new")("0")
+  ]);
+}
+
 function sectionDom(name){
   return t("section", {id: name})([
     t("h3", {classes: ["group"]})(name),
