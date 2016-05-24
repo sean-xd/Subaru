@@ -1,8 +1,17 @@
 // Globals
 var ls = localStorage,
+  kyp = Kyp(),
   player,
   base = {videoId: "zN4m-KcflGg"},
-  dom = {main: el("main")[0], sections: {}, create: el(".create")[0]},
+  dom = {
+    main: el("main")[0],
+    sections: {},
+    create: el(".create")[0],
+    content: el(".content")[0],
+    aside: el("aside")[0],
+    drawer: el(".drawer")[0],
+    bg: el(".bg")[0]
+  },
   channels = ls.channels ? JSON.parse(ls.channels) : {},
   groups = ls.groups ? JSON.parse(ls.groups) : {},
   active = {video: false, group: false, theatre: false},
@@ -80,8 +89,8 @@ function toggleDrawer(name){
   if(!player) activatePlayer();
   if(is(name, "String")) active.group = name;
   active.theatre = !active.theatre;
-  clt(el(".drawer")[0], "open");
-  clt(el(".bg")[0], "short");
+  clt(dom.drawer, "open");
+  clt(dom.bg, "short");
   clt(dom.main, "space");
   clt(el("#" + active.group), "expand");
   if(!active.theatre){
@@ -109,6 +118,14 @@ function nextVideo(){
 }
 
 // Click Events
+kyp("tab", e => {
+  e.preventDefault();
+  clt(dom.content, "small");
+  clt(dom.aside, "big");
+  clt(dom.drawer, "small");
+});
+
+
 var isCreateOpen = false;
 dom.create.addEventListener("click", e => {
   clt(el(".createInput")[0], "long");

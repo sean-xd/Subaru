@@ -1,3 +1,8 @@
+.small section {
+  width: 100% !important;
+  text-align: center;
+}
+
 section {
   position: relative;
   visibility: visible;
@@ -24,6 +29,7 @@ section.expand {height: auto; margin: 0px auto 40px auto !important;}
   font: 700 15px "Roboto";
   height: 30px;
   cursor: pointer;
+  text-align: left !important;
 }
 
 .settings {
@@ -121,6 +127,7 @@ section.expand {height: auto; margin: 0px auto 40px auto !important;}
 }
 
 .video {
+  text-align: left;
   position: relative;
   transition: .2s all;
   vertical-align: top;

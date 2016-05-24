@@ -1,7 +1,18 @@
 html, body {border: 0; height: 100%; margin: 0; padding: 0; width: 100%; font-size: 0;}
 a {text-decoration: none;}
 
+.content, aside {display: inline-block; transition: all .2s;}
+aside {
+  position: relative;
+  top: 90px; width: 0%;
+  height: calc(100% - 90px);
+  background: rgb(40,40,40);
+  z-index: 2;
+}
+aside.big {width: 20%;}
+
 .content {
+  display: inline-block;
   top: 90px;
   position: relative;
   width: 100%;
@@ -9,8 +20,10 @@ a {text-decoration: none;}
   overflow-y: scroll;
   overflow-x: hidden;
 }
+.content.small {width: 80%;}
 ::-webkit-scrollbar {display: none;}
 
+.drawer.small {width: 80%; left: 20%;}
 .drawer {
   transition: .2s all;
   position: fixed;
@@ -39,9 +52,10 @@ a {text-decoration: none;}
 
 #player {width: 100%; height: 100%; max-width: 1260px;}
 
-main, .bg {transition: .2s all; position: absolute; left: 0; width: 100vw;}
+main, .bg {transition: .2s all; position: absolute; left: 0; width: 100%;}
 main {top: 0px; visibility: hidden; box-sizing: border-box; margin-bottom: 50px;}
 main.space {padding-top: calc(100vh - 350px);}
+main.small {width: 100%;}
 
 .bg {bottom: 0px; background: rgb(240,240,240); height: calc(100% - 90px);}
 .bg.short {height: 260px; background: rgb(220,220,220);}
