@@ -117,13 +117,15 @@ function nextVideo(){
   player.nextVideo();
 }
 
-// Click Events
-kyp("tab", e => {
-  e.preventDefault();
+function openSidebar(){
   clt(dom.content, "small");
   clt(dom.aside, "big");
   clt(dom.drawer, "small");
-});
+}
+
+// Click Events
+kyp("tab", e => {e.preventDefault(); openSidebar();});
+el(".hamburger")[0].addEventListener("click", openSidebar);
 
 
 var isCreateOpen = false;
