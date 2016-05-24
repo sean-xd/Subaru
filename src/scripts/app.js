@@ -40,7 +40,8 @@ function load(name, update){ // Gets and passes group video data to draw.
       });
     });
   });
-  if(nextUpdate[name] < time || update) ls.nextUpdate = time + (1000 * 60 * 5);
+  if(nextUpdate[name] < time || update) nextUpdate[name] = time + (1000 * 60 * 5);
+  ls.nextUpdate = JSON.stringify(nextUpdate);
 }
 
 function format(data){ // Take just the data we need.
