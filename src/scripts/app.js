@@ -17,7 +17,10 @@ var ls = localStorage,
   active = {video: false, group: false, theatre: false},
   list = [],
   nextUpdate = ls.nextUpdate ? JSON.parse(ls.nextUpdate) : {},
-  banlist = ls.banlist ? JSON.parse(ls.banlist) : [];
+  banlist = ls.banlist ? JSON.parse(ls.banlist) : [],
+  playback = {
+    Music: 1.25
+  };
 
 if(Object.keys(groups).length){
   Object.keys(groups).sort().forEach(key => load(key));
@@ -103,6 +106,7 @@ function toggleDrawer(name){
   }
   else el(".content")[0].scrollTop = 0;
   active.group ? player.cuePlaylist(list[active.group]) : player.cueVideoById(base.videoId);
+  player.setPlaybackRate(playback[active.group] || 1);
   Object.keys(groups).forEach(key => {
     if(!active.group) return clr(el("#" + key), "hide");
     if(key !== active.group) cla(el("#" + key), "hide");
