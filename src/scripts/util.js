@@ -43,6 +43,13 @@ function cla(e, cn){return e.classList.add(cn);}
 function clr(e, cn){return e.classList.remove(cn);}
 function clt(e, cn){return e.classList.toggle(cn);}
 
+function jss(obj){return JSON.stringify(obj);}
+function jsp(str){return JSON.parse(str);}
+function lsod(key, def){return !ls[key] ? def : pod(ls[key]);}
+function pod(str, def){return (str[0] === "{" || str[0] === "[") ? jsp(str) : str;}
+function lss(key, obj){ls[key] = JSON.stringify(obj);}
+function lsp(key){return JSON.parse(ls[key]);}
+
 function hp(url, cb){
   var req = new XMLHttpRequest();
   req.addEventListener("load", function(){

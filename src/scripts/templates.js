@@ -1,7 +1,7 @@
 function groupSideDom(name){
   return t(".group-side")([
     t(".gs-title")(name)
-  ].concat(groups[name].map(channelSideDom)));
+  ].concat(groups[name].channels.map(channelSideDom)));
 }
 
 function channelSideDom(name){
@@ -23,14 +23,20 @@ function sectionDom(name){
         t("input", {placeholder: "Enter Channel Name"})(),
         t(".add")("Add Channel")
       ]),
-      t(".right")(groups[name].map(channelDom))
+      t(".right")(groups[name].channels.map(channelDom))
     ])
   ])
 }
 
 function videoDom(data){
   return t(".video", {id: data.id})([
-    t(".video-del", {click: e => ban(pa(pa(e.target)).id, data.id)})("x"),
+    t(".video-del", {click: e => {
+      var id = pa(pa(e.target)).id;
+      if(id === active.video) nextVideo();
+      banlist.push(id);
+      lss("banlist", banlist);
+      load(id, 1);
+    }})("x"),
     t("img", {classes: ["video-img"], src: data.src})(),
     t(".video-title")(data.title),
     t("a", {classes: ["video-links"], href: "http://www.youtube.com/channel/" + data.cid})(data.cname)
