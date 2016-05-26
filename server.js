@@ -1,5 +1,6 @@
 var express = require("express"),
   sx = express(),
+  bodyParser = require("body-parser"),
   pg = require('pg'),
   dbinfo = require("./dbinfo.js"),
   pg_users = new pg.Client(dbinfo.users),
