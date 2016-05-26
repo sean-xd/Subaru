@@ -4,37 +4,43 @@ var express = require("express"),
   fs = require("fs"),
   crypto = require("crypto"),
   users = JSON.parse(fs.readFileSync("./db/users.json")),
-  channels = JSON.parse(fs.readFileSync("./db/channels.json"));
+  channels = JSON.parse(fs.readFileSync("./db/channels.json")),
+  oneWeek = 1000 * 60 * 60 * 24 * 7,
 
-function hsh(text){return crypto.createHash("md5").update(text + Date.now().toString()).digest("hex");}
-
-// Everything is a post with JSON.
 sx.use(bodyParser.json());
 
-// Sends a token to use in other posts.
-sx.post("/auth", (req, res) => {
-  var user = users.find(e => e.uid === e.)
-  if(req.body.token){
-    var result = {};
-    if(req.body.token === user.token)
-    return res.send((req.body.token === user.token) ? {success: true}, {success: false});
-  }
-  if(req.body.hash === users[req.body.uid].hash) res.send({token: })
-});
-
-// Adding a user.
 sx.post("/users/new", (req, res) => {
-  if(users[req.body.name]) return res.send({success: false});
-  users.push({id: users.length, name: req.body.name, hash: hsh(req.body.password), uid: hsh(req.body.name)});
-  res.send({success: true});
+  res.send(users.find(e => e.name === req.body.name) ? publicData(createUser(req.body)) : {text: "user exists"});
 });
 
 sx.post("/users", (req, res) => {
-  res.send({});
+  var b = req.body, user = users.find(e => e.uid === b.uid),
+    checkPass = (b.pass && hsh(b.pass) === user.hash),
+    checkToken = (b.token === user.token && b.ttl === user.ttl && b.ttl > Date.now());
+  if(!user) res.send({text: "no user"});
+  if(checkPass){
+    user.token = hsh(b.uid);
+    user.ttl = Date.now() + oneWeek;
+    fs.writeFile("./db/users.json", JSON.stringify(users));
+  }
+  if(checkPass || checkToken) res.send(publicData(user));
+  res.send({text: "auth failed"});
 });
 
-sx.get("/channels/:id", (req, res) => {
-  if(channels[req.params.id]) return res.send(channels[req.params.id]);
+sx.get("/channel/:id", (req, res) => {
+  if(channels[req.params.id] && channels[req.params.id].ttl > Date.now()) res.send(channels[req.params.id]);
 });
+
+function createUser(b){
+  var uid = hsh(b.name), user = {
+    id: users.length, name: b.name, hash: hsh(b.pass), uid: uid, token: hsh(uid), ttl: Date.now() + oneWeek
+  };
+  users.push(user);
+  fs.writeFile("./db/users.json", JSON.stringify(users));
+  res.send(publicData(user));
+}
+function getUser(type, info){return users.filter(e => e[type] === info)[0];}
+function hsh(text){return crypto.createHash("md5").update(text + Date.now().toString()).digest("hex");}
+function publicData(user){return {uid: user.uid, groups: user.groups || [], token: user.token, ttl: user.ttl};}
 
 sx.listen(4258);
