@@ -3,6 +3,7 @@ el(".hamburger")[0].addEventListener("click", openSidebar);
 
 dom.aside.addEventListener("click", e => {
   if(clc(e.target, "gs-title")) toggleDrawer(e.target.textContent);
+  if(clc(e.target, "gs-settings")) gsSettings(e.target);
 });
 
 dom.create.addEventListener("click", e => {
@@ -11,6 +12,11 @@ dom.create.addEventListener("click", e => {
   dom.create.textContent = active.create ? "playlist_add" : "playlist_add_check";
   active.create = !active.create;
 });
+
+function gsSettings(e){
+  var name = el(".gs-title", pa(e))[0].textContent;
+  clt(pa(e), "gs-open");
+}
 
 function addGroup(val){
   groups[val] = {channels: [], playback: 1};

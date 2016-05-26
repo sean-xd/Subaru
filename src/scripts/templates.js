@@ -1,5 +1,6 @@
 function groupSideDom(name){
   return t(".group-side")([
+    t("i", {classes: ["gs-settings", "material-icons"]})("settings"),
     t(".gs-title")(name)
   ].concat(groups[name].channels.map(channelSideDom)));
 }

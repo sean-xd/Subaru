@@ -14,10 +14,15 @@ aside {
 }
 aside.big {width: 20%;}
 
+.x_spin {transform: rotate(1turn);}
+.x_hide {opacity: 0; visibility: hidden;}
+
 .group-side, .channel-side {box-sizing: border-box;}
-.group-side {width: 20vw; padding: 15px 15px 0px 15px;}
+.group-side {width: 20vw; padding: 10px 15px; position: relative; transition: .2s all;}
+.gs-open {background: rgb(230,230,230); padding: 15px;}
 .channel-side {width: 100%;}
-.gs-title {font: 16px "Roboto"; padding: 5px; color: #cc181e; cursor: pointer;}
+.gs-settings {font-size: 16px; position: absolute; padding: 5px; top: 15px; right: 10px; cursor: pointer;}
+.gs-title {font: 16px "Roboto"; padding: 5px; color: #cc181e; cursor: pointer; display: inline-block;}
 .cs-title, .cs-new {display: inline-block; font: 12px "Roboto"; box-sizing: border-box; padding: 5px;}
 .cs-title {width: 80%;}
 .cs-new {width: 20%; text-align: right;}
