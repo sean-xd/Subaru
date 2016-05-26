@@ -49,7 +49,7 @@ function toggleDrawer(name){
   }
   else dom.content.scrollTop = 0;
   active.group ? player.cuePlaylist(list[active.group]) : player.cueVideoById("mwUo_zZ6URc");
-  player.setPlaybackRate(groups[active.group].playback);
+  if(active.group) player.setPlaybackRate(groups[active.group].playback);
   Object.keys(groups).forEach(key => {
     if(!active.group) return clr(el("#" + key), "hide");
     if(key !== active.group) cla(el("#" + key), "hide");
