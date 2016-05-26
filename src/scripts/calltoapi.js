@@ -1,3 +1,12 @@
+function getChannelVideosProd(name, cb){
+  hp(`http://0421.io:4258/channel/${name}`, data => {
+    if(!channels[cname]) channels[cname] = {banlist: [], videos: data};
+    else channels[cname].videos = data;
+    channels[cname].nextUpdate = Date.now() + (1000 * 60 * 5);
+    cb();
+  });
+}
+
 function channel(name, cb){
   hp(`https://www.googleapis.com/youtube/v3/channels?key=${apikey}&forUsername=${name}&part=id`, cb);
 }

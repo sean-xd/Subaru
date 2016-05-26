@@ -1,4 +1,4 @@
 node_modules
 src/scripts/apikey.js
 html
-dbinfo.js
+users.json
