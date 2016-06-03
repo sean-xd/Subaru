@@ -25,7 +25,6 @@ var ls = localStorage,
 if(Object.keys(groups).length) Object.keys(groups).sort().forEach(key => load(key));
 
 function load(name, update){
-  console.log(name);
   var magic = Magic(groups[name].channels.length, () => {
     lss("channels", channels);
     draw(name, update);

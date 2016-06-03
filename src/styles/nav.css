@@ -18,7 +18,7 @@
 }
 .hamburger:hover {color: rgb(80,80,80);}
 
-form {
+.search-form {
   box-sizing: border-box;
   font-size: 0;
   display: block;
@@ -28,15 +28,17 @@ form {
   margin: 7px auto;
   height: 26px;
 }
+.search-form button {
+  width: 10%;
+  border: none;
+  height: 26px;
+}
 
-form input, form button {
+.search {
   box-sizing: border-box;
   float: left;
   margin: 0;
   padding: 5px 6px;
-}
-
-form input {
   font: 16px "Roboto";
   width: 90%;
   height: 26px;
@@ -44,16 +46,7 @@ form input {
   box-shadow: inset 0px 0px 1px 0px rgba(40,40,40,.5);
 }
 
-form input::-webkit-input-placeholder {color: rgb(125,125,125);}
-
-form button {
-  border: none;
-  background: rgb(220,220,220);
-  width: 10%; height: 26px;
-  text-align: center;
-  color: rgb(120,120,120);
-}
-form button:hover {background: rgb(230,230,230); color: rgb(160,160,160);}
+.search::-webkit-input-placeholder {color: rgb(125,125,125);}
 
 .profile {
   position: absolute;
@@ -63,30 +56,4 @@ form button:hover {background: rgb(230,230,230); color: rgb(160,160,160);}
   border-radius: 100%;
   background: rgb(67, 115, 222);
   color: rgb(156, 190, 247);
-}
-
-.create {
-  float: right;
-  padding: 6px;
-  margin-right: 20px;
-  font-size: 26px !important;
-  cursor: pointer;
-  color: rgb(80,80,80);
-}
-.create:hover {color: rgb(40,40,40);}
-
-.createInput {
-  right: 60px;
-  top: 0;
-  position: absolute;
-  transition: .2s all;
-  width: 0px;
-  padding: 2px 0px 2px 5px;
-  font: 14px "Roboto";
-  margin: 9px 8px 8px 8px;
-  border: none;
-}
-.createInput.long {
-  width: 150px;
-  border: 1px solid rgb(200,200,200);
 }

@@ -6,25 +6,21 @@ dom.aside.addEventListener("click", e => {
   if(clc(e.target, "gs-settings")) gsSettings(e.target);
 });
 
-dom.create.addEventListener("click", e => {
-  clt(dom.createInput, "long");
-  if(active.create && dom.createInput.value) addGroup(dom.createInput.value);
-  dom.create.textContent = active.create ? "playlist_add" : "playlist_add_check";
-  active.create = !active.create;
-});
-
 function gsSettings(e){
   var name = el(".gs-title", pa(e))[0].textContent;
   clt(pa(e), "gs-open");
 }
 
-function addGroup(val){
-  groups[val] = {channels: [], playback: 1, banlist: []};
-  dom.sections[val] = sectionDom(val);
+function addGroup(){
+  var name = dom.createInput.value,
+    pb = dom.playbackInput.value;
+  if(!name) return;
+  groups[name] = {channels: [], playback: pb || 1, banlist: []};
+  dom.sections[name] = sectionDom(name);
   var order = Object.keys(groups).sort(sorter(e => e)),
-    index = order.indexOf(val) + 1;
-  if(index === order.length) dom.main.appendChild(dom.sections[val]);
-  else dom.main.insertBefore(dom.sections[val], el("#" + order[index]));
+    index = order.indexOf(name) + 1;
+  if(index === order.length) dom.main.appendChild(dom.sections[name]);
+  else dom.main.insertBefore(dom.sections[name], el("#" + order[index]));
 }
 
 function removeGroup(e){

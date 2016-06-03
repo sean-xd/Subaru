@@ -13,8 +13,24 @@ aside {
   overflow-x: hidden;
 }
 aside.big {width: 20%;}
-.side-footer {position: absolute; bottom: 0; left: 0; width: 100%;}
-.side-footer label, .side-footer input {display: inline-block; font: 14px "Roboto"; width: 50%;}
+.side-footer {position: absolute; bottom: 0; left: 0; width: 100%; z-index: 1;}
+.side-footer input {
+  box-sizing: border-box;
+  display: inline-block;
+  font: 12px "Roboto";
+  border: none;
+  padding: 10px;
+}
+.create-input {width: 80%;}
+.playback-input {width: 20%;}
+
+.create {
+  box-sizing: border-box;
+  padding: 10px;
+  width: 100%;
+  font-size: 16px;
+  color: rgb(80,80,80);
+}
 
 .x_spin {transform: rotate(1turn);}
 .x_hide {opacity: 0;}

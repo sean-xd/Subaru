@@ -13,8 +13,8 @@
     <i class="material-icons hamburger">menu</i>
     <div class="logo">Chiyu</div>
 
-    <form action="javascript:youtubeSearch()">
-      <input type="text" placeholder="Search">
+    <form action="javascript:youtubeSearch()" class="search-form">
+      <input type="text" placeholder="Search" class="search">
       <button type="submit"><i class="material-icons">search</i></button>
     </form>
 
@@ -23,11 +23,11 @@
   </nav>
 
   <aside>
-    <div class="side-footer">
-      <label>Name: <input type="text" class="create-input" placeholder="Enter name for Group"></label>
-      <label>Playback Speed: <input type="text" class="playback-input" placeholder="Enter Playback Speed" value="1"></label>
-      <div class="create">Add Group</div>
-    </div>
+    <form class="side-footer" action="javascript:addGroup()">
+      <input type="text" class="create-input" placeholder="Enter name for Group">
+      <input type="text" class="playback-input" placeholder="Rate">
+      <button type="submit" class="create">Add Group</button>
+    </form>
   </aside>
 
   <div class="bg"></div>
