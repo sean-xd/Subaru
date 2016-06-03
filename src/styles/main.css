@@ -3,19 +3,21 @@ a {text-decoration: none;}
 
 .content, aside {display: inline-block; transition: all .2s;}
 aside {
-  box-shadow: 0px 0px .3px .3px rgba(80,80,80,.4);
+  box-shadow: inset 0px 0px .3px .3px rgba(80,80,80,.4);
   position: relative;
-  top: 90px; width: 0%;
-  height: calc(100% - 90px);
+  top: 40px; width: 0%;
+  height: calc(100% - 40px);
   background: white;
   z-index: 2;
   overflow-y: scroll;
   overflow-x: hidden;
 }
 aside.big {width: 20%;}
+.side-footer {position: absolute; bottom: 0; left: 0; width: 100%;}
+.side-footer label, .side-footer input {display: inline-block; font: 14px "Roboto"; width: 50%;}
 
 .x_spin {transform: rotate(1turn);}
-.x_hide {opacity: 0; visibility: hidden;}
+.x_hide {opacity: 0;}
 
 .group-side, .channel-side {box-sizing: border-box;}
 .group-side {width: 20vw; padding: 10px 15px; position: relative; transition: .2s all;}
@@ -29,10 +31,10 @@ aside.big {width: 20%;}
 
 .content {
   display: inline-block;
-  top: 90px;
+  top: 40px;
   position: relative;
   width: 100%;
-  height: calc(100% - 90px);
+  height: calc(100% - 40px);
   overflow-y: scroll;
   overflow-x: hidden;
 }
@@ -44,14 +46,14 @@ aside.big {width: 20%;}
   transition: .2s all;
   position: fixed;
   pointer-events: none;
-  top: 90px; left: 0;
+  top: 40px; left: 0;
   height: 0px; width: 100%;
   overflow: hidden;
   text-align: center;
   box-shadow: inset 0px 0px 1px 1px rgba(80,80,80,.5);
   background: black;
 }
-.drawer.open {height: calc(100% - 350px);}
+.drawer.open {height: calc(100% - 300px);}
 .prev, .next, #player {pointer-events: auto; cursor: pointer;}
 .prev, .next {
   position: absolute;
@@ -66,14 +68,13 @@ aside.big {width: 20%;}
 .prev {left: 20px;}
 .next {right: 20px;}
 
-#player {width: 100%; height: 100%; max-width: 1260px;}
+#player {width: 100%; height: 100%;}
 
 main, .bg {transition: .2s all; position: absolute; left: 0; width: 100%;}
 main {top: 0px; visibility: hidden; box-sizing: border-box; margin-bottom: 50px;}
-main.space {padding-top: calc(100vh - 350px);}
-main.small {width: 100%;}
+main.space {padding-top: calc(100vh - 300px);}
 
-.bg {bottom: 0px; background: rgb(240,240,240); height: calc(100% - 90px);}
+.bg {bottom: 0px; background: rgb(240,240,240); height: calc(100% - 40px);}
 .bg.short {height: 260px; background: rgb(220,220,220);}
 
 .top {
@@ -85,24 +86,39 @@ main.small {width: 100%;}
   cursor: pointer;
 }
 
-@media(min-width: 300px){section {width: 220px;}}
+.otherside {
+  position: fixed;
+  top: 40px;
+  height: calc(100% - 40px);
+  width: 20%;
+}
+
+@media(min-width: 300px){
+  section {width: 220px;}
+  .small section, .xsmall section {width: 0px;}
+}
 @media(min-width: 500px){
   section {width: 440px;}
   .small section {width: 220px;}
+  .xsmall section {width: 0px;}
 }
 @media(min-width: 700px){
   section {width: 650px;}
   .small section {width: 440px;}
+  .xsmall section {width: 220px;}
 }
 @media(min-width: 900px){
   section {width: 850px;}
   .small section {width: 650px;}
+  .xsmall section {width: 440px;}
 }
 @media(min-width: 1100px){
   section {width: 1050px;}
   .small section {width: 850px;}
+  .xsmall section {width: 650px;}
 }
 @media(min-width: 1300px){
   section {width: 1260px;}
   .small section {width: 1050px;}
+  .xsmall section {width: 850px;}
 }

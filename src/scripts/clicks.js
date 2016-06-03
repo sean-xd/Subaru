@@ -19,7 +19,7 @@ function gsSettings(e){
 }
 
 function addGroup(val){
-  groups[val] = {channels: [], playback: 1};
+  groups[val] = {channels: [], playback: 1, banlist: []};
   dom.sections[val] = sectionDom(val);
   var order = Object.keys(groups).sort(sorter(e => e)),
     index = order.indexOf(val) + 1;
@@ -50,7 +50,7 @@ function addChannel(e){
 function removeChannel(e){
   var channelName = el(".cname", pa(e))[0].textContent,
     groupName = pa(pa(pa(pa(e)))).id;
-  groups[groupName].videos = groups[groupName].videos.filter(chan => chan !== channelName);
+  groups[groupName].channels = groups[groupName].channels.filter(chan => chan !== channelName);
   lss("groups", groups);
   pa(pa(e)).removeChild(pa(e));
   load(groupName, 1);

@@ -1,6 +1,6 @@
 function getChannelVideosProd(name, cb){
   hp(`http://0421.io:4258/channel/${name}`, data => {
-    if(!channels[cname]) channels[cname] = {banlist: [], videos: data};
+    if(!channels[cname]) channels[cname] = {videos: data};
     else channels[cname].videos = data;
     channels[cname].nextUpdate = Date.now() + (1000 * 60 * 5);
     cb();
@@ -19,7 +19,7 @@ function videos(id, cb){
 function getChannelVideos(cname, cb){
   channel(cname, cdata => {
     videos(cdata, vdata => {
-      if(!channels[cname]) channels[cname] = {banlist: [], videos: []};
+      if(!channels[cname]) channels[cname] = {videos: []};
       channels[cname].videos = channels[cname].videos
         .concat(formatVideos(cname, vdata))
         .sort(sorter(e => e.date));

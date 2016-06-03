@@ -13,7 +13,7 @@ function draw(name, update){
     while(children.length > 3) section.removeChild(children[children.length - 1]);
   }
   var playlist = groups[name].channels.reduce((arr, cn) => {
-    return arr.concat(channels[cn].videos).filter(v => channels[cn].banlist.indexOf(v) === -1);
+    return arr.concat(channels[cn].videos).filter(v => groups[name].banlist.indexOf(v.id) === -1);
   }, []);
   playlist.sort(sorter(e => Date.now() - e.date));
   playlist.forEach(e => section.appendChild(videoDom(e)))

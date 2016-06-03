@@ -32,11 +32,12 @@ function sectionDom(name){
 function videoDom(data){
   return t(".video", {id: data.id})([
     t(".video-del", {click: e => {
-      var id = pa(pa(e.target)).id;
+      var groupName = pa(pa(e.target)).id,
+        id = pa(e.target).id;
       if(id === active.video) nextVideo();
-      banlist.push(id);
-      lss("banlist", banlist);
-      load(id, 1);
+      groups[groupName].banlist.push(id);
+      lss("groups", groups);
+      load(groupName, 1);
     }})("x"),
     t("img", {classes: ["video-img"], src: data.src})(),
     t(".video-title")(data.title),

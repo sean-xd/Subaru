@@ -2,32 +2,36 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Subscriptions - Youtube</title>
+  <title>Next Year</title>
   <link rel="stylesheet" href="main.css">
   <script src="https://www.youtube.com/iframe_api" defer></script>
   <script src="app.js" defer></script>
 </head>
 <body>
+
   <nav class="mainnav">
     <i class="material-icons hamburger">menu</i>
-    <div class="logo"><div class="you">You</div><div class="tube">Tube</div></div>
+    <div class="logo">Chiyu</div>
+
     <form action="javascript:youtubeSearch()">
       <input type="text" placeholder="Search">
       <button type="submit"><i class="material-icons">search</i></button>
     </form>
+
     <i class="profile material-icons">account_circle</i>
-    <i class="notifications material-icons">notifications_none</i>
-    <button class="upload">Upload</button>
+
   </nav>
-  <nav class="subnav">
-    <a href="">Home</a>
-    <a href="">Trending</a>
-    <a href="">Subscriptions</a>
-    <i class="create material-icons">playlist_add</i>
-    <input type="text" class="createInput" placeholder="Enter Group Name">
-  </nav>
-  <aside></aside>
+
+  <aside>
+    <div class="side-footer">
+      <label>Name: <input type="text" class="create-input" placeholder="Enter name for Group"></label>
+      <label>Playback Speed: <input type="text" class="playback-input" placeholder="Enter Playback Speed" value="1"></label>
+      <div class="create">Add Group</div>
+    </div>
+  </aside>
+
   <div class="bg"></div>
+
   <div class="content">
     <div class="drawer">
       <i class="prev material-icons">navigate_before</i>
@@ -36,6 +40,8 @@
     </div>
     <main></main>
   </div>
+
   <i class="top material-icons">arrow_upward</i>
+
 </body>
 </html>
