@@ -39,15 +39,17 @@ function toggleDrawer(name){
   if(close || !active.theatre){
     active.theatre = !active.theatre;
     clt(dom.drawer, "open");
-    clt(dom.bg, "short");
+    clt(dom.content, "bottom");
+    clt(dom.nav, "playing");
     clt(dom.main, "space");
+    clt(dom.bgbar, "on");
   }
   clt(el("#" + active.group), "expand");
   if(!active.theatre){
     active.group = false;
     active.video = false;
   }
-  else dom.content.scrollTop = 0;
+  else dom.content.scrollTop = 220;
   active.group ? player.cuePlaylist(list[active.group]) : player.cueVideoById("mwUo_zZ6URc");
   if(active.group) player.setPlaybackRate(groups[active.group].playback);
   Object.keys(groups).forEach(key => {

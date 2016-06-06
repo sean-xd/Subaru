@@ -1,57 +1,3 @@
-kyp("tab", e => {e.preventDefault(); openSidebar();});
-el(".hamburger")[0].addEventListener("click", openSidebar);
-
-dom.aside.addEventListener("click", e => {
-  if(clc(e.target, "gs-title")) toggleDrawer(e.target.textContent);
-  if(clc(e.target, "gs-settings")) gsSettings(e.target);
-});
-
-function gsSettings(e){
-  var name = el(".gs-title", pa(e))[0].textContent;
-  clt(pa(e), "gs-open");
-}
-
-function addGroup(){
-  var name = dom.createInput.value,
-    pb = dom.playbackInput.value;
-  if(!name) return;
-  groups[name] = {channels: [], playback: pb || 1, banlist: []};
-  dom.sections[name] = sectionDom(name);
-  var order = Object.keys(groups).sort(sorter(e => e)),
-    index = order.indexOf(name) + 1;
-  if(index === order.length) dom.main.appendChild(dom.sections[name]);
-  else dom.main.insertBefore(dom.sections[name], el("#" + order[index]));
-}
-
-function removeGroup(e){
-  var id = pa(pa(e)).id;
-  dom.main.removeChild(dom.sections[id]);
-  groups = Object.keys(groups).reduce((obj, key) => {
-    if(key !== id) obj[key] = groups[key];
-    return obj;
-  }, {});
-  lss("groups", groups);
-}
-
-function addChannel(e){
-  var channelName = el("input", pa(e))[0].value,
-    groupName = pa(pa(pa(e))).id;
-  el("input", pa(e))[0].value = "";
-  groups[groupName].channels.push(channelName);
-  lss("groups", groups);
-  el(".right", pa(pa(e)))[0].appendChild(channelDom(channelName));
-  load(groupName, 1);
-}
-
-function removeChannel(e){
-  var channelName = el(".cname", pa(e))[0].textContent,
-    groupName = pa(pa(pa(pa(e)))).id;
-  groups[groupName].channels = groups[groupName].channels.filter(chan => chan !== channelName);
-  lss("groups", groups);
-  pa(pa(e)).removeChild(pa(e));
-  load(groupName, 1);
-}
-
 function toggleVideo(e){
   var id = pa(e).id;
   if(!active.theatre) toggleDrawer(el("h3", pa(pa(e)))[0].textContent);
@@ -73,21 +19,30 @@ function previousVideo(){
   player.previousVideo();
 }
 
-dom.main.addEventListener("click", e => {
-  if(clc(e.target, "group")) toggleDrawer(e.target.textContent);
-  if(clc(e.target, "remove")) removeGroup(e.target);
-  if(clc(e.target, "refresh")) load(pa(pa(e.target)).id, 1);
-  if(clc(e.target, "add")) addChannel(e.target);
-  if(clc(e.target, "delete")) removeChannel(e.target);
-  if(clc(e.target, "video-img") || clc(e.target, "video-title")) toggleVideo(e.target);
+clk(dom.main, e => {
+  if(clc(e, "group")) toggleDrawer(e.textContent);
+  if(clc(e, "remove")) removeGroup(e);
+  if(clc(e, "refresh")) load(pa(pa(e)).id, 1);
+  if(clc(e, "add")) addChannel(e);
+  if(clc(e, "delete")) removeChannel(e);
+  if(clc(e, "video-img") || clc(e, "video-title")) toggleVideo(e);
 
   // CHANGE THIS SHIT
-  if(clc(e.target, "settings")){
+  if(clc(e, "settings")){
     if(active.theatre) toggleDrawer();
-    clt(el(".panel", pa(e.target))[0], "show");
+    clt(el(".panel", pa(e))[0], "show");
   }
 });
 
-el(".next")[0].addEventListener("click", nextVideo);
-el(".prev")[0].addEventListener("click", previousVideo);
-el(".top")[0].addEventListener("click", () => {el(".content")[0].scrollTop = 0;});
+clk(".next", nextVideo);
+clk(".prev", previousVideo);
+
+var lastScroll = 220;
+clk(".top", () => {
+  dom.content.scrollTop = lastScroll;
+  lastScroll = 220;
+});
+clk(".bot", () => {
+  lastScroll = dom.content.scrollTop || lastScroll;
+  dom.content.scrollTop = 0;
+});

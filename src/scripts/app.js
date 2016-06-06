@@ -2,6 +2,7 @@ var ls = localStorage,
   kyp = Kyp(),
   player,
   dom = {
+    nav: el("nav")[0],
     main: el("main")[0],
     sections: {},
     create: el(".create")[0],
@@ -10,7 +11,7 @@ var ls = localStorage,
     content: el(".content")[0],
     aside: el("aside")[0],
     drawer: el(".drawer")[0],
-    bg: el(".bg")[0]
+    bgbar: el(".bg-bar")[0]
   },
   active = {
     video: false,

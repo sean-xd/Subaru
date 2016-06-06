@@ -37,6 +37,11 @@ function t(tag, config){
   };
 }
 
+function clk(e, cb){
+  if(is(e, "String")) e = (e[0] === "#") ? el(e) : el(e)[0];
+  e.addEventListener("click", function(e){cb(e.target, e, this);});
+}
+
 function pa(e){return e.parentNode;}
 function clc(e, cn){return e.classList.contains(cn);}
 function cla(e, cn){return e.classList.add(cn);}
