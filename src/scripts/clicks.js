@@ -39,6 +39,7 @@ clk(".prev", previousVideo);
 
 var lastScroll = 220;
 clk(".top", () => {
+  if(lastScroll < 220) lastScroll = 220;
   dom.content.scrollTop = lastScroll;
   lastScroll = 220;
 });
